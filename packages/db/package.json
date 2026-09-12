@@ -27,7 +27,7 @@
     "@callus/config": "workspace:*",
     "@types/pg": "^8.20.0",
     "dotenv": "catalog:",
-    "drizzle-kit": "1.0.0-rc.4",
+    "drizzle-kit": "1.0.0-rc.5-5935859",
     "typescript": "catalog:"
   }
 }
