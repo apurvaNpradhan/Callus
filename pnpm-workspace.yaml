@@ -8,7 +8,7 @@ allowBuilds:
 catalog:
   dotenv: ^17.4.2
   zod: ^4.6.2
-  "@types/node": ^26.5.1
+  "@types/node": ^26.5.0
   hono: ^4.13.7
   "@orpc/server": 2.0.0-beta.35
   "@orpc/openapi": 2.0.0-beta.35
