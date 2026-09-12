@@ -1,0 +1,26 @@
+{
+  "name": "@callus/auth",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@better-auth/drizzle-adapter": "1.7.4",
+    "@better-auth/expo": "catalog:",
+    "@callus/db": "workspace:*",
+    "@callus/env": "workspace:*",
+    "better-auth": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@callus/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

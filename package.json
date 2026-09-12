@@ -1,0 +1,47 @@
+{
+  "name": "callus",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "check-types": "turbo run check-types",
+    "dev:native": "turbo run dev -F native --",
+    "dev:web": "turbo run dev -F web --",
+    "dev:server": "turbo run dev -F server --",
+    "db:local:up": "docker compose -f compose.local.yml up -d",
+    "db:local:down": "docker compose -f compose.local.yml down",
+    "db:push": "turbo run db:push -F @callus/db --",
+    "db:studio": "turbo run db:studio -F @callus/db --",
+    "db:generate": "turbo run db:generate -F @callus/db --",
+    "db:migrate:deploy": "turbo run db:migrate:deploy -F @callus/db --",
+    "lint": "oxlint",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check",
+    "check": "pnpm lint && pnpm format:check",
+    "syncpack": "syncpack lint --dependency-types prod,dev",
+    "syncpack:fix": "syncpack fix --dependency-types prod,dev"
+  },
+  "dependencies": {
+    "@callus/env": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@callus/config": "workspace:*",
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "@types/node": "catalog:",
+    "lefthook": "^2.1.12",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
+    "syncpack": "^15.3.3",
+    "turbo": "^2.10.12",
+    "typescript": "catalog:"
+  },
+  "packageManager": "pnpm@11.26.0"
+}

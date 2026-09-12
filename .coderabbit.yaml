@@ -1,0 +1,21 @@
+language: en-US
+early_access: false
+reviews:
+  profile: assertive
+  request_changes_workflow: true
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - main
+    path_filters:
+      - "!**/pnpm-lock.yaml"
+      - "!**/package-lock.json"
+      - "!**/yarn.lock"
+      - "!**/bun.lock"
+      - "!**/routeTree.gen.ts"
+      - "!**/*.md"
+      - "!apps/native/uniwind-types.d.ts"
+      - "!**/worker-configuration.d.ts"
+chat:
+  auto_reply: true
