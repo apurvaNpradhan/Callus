@@ -1,6 +1,6 @@
 import { Redirect } from "expo-router";
 import { Stack } from "expo-router/stack";
-import { Text } from "panelui-native";
+import { Typography } from "heroui-native";
 import { View } from "react-native";
 
 import { authClient } from "@/lib/auth-client";
@@ -49,9 +49,9 @@ export default function AuthenticatedLayout() {
 function StatusMessage({ message }: { message: string }) {
   return (
     <View className="flex-1 items-center justify-center px-6">
-      <Text className="text-center" muted>
+      <Typography align="center" color="muted">
         {message}
-      </Text>
+      </Typography>
     </View>
   );
 }

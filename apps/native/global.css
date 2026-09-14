@@ -1,5 +1,5 @@
 @import "tailwindcss";
 @import "uniwind";
-@import "panelui-native/theme.css";
+@import "heroui-native/styles";
 
-@source "./node_modules/panelui-native/src";
+@source "./node_modules/heroui-native/lib";
