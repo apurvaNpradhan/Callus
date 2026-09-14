@@ -47,11 +47,10 @@ async function transitionPowerSyncOwner(
   }
 
   if (!userId) {
-    if (storedOwner !== null || powerSync.connected || powerSync.connecting) {
-      await powerSync.disconnectAndClear();
-    }
-    await writeOwner(null);
-    return null;
+    if (powerSync.connected || powerSync.connecting) await powerSync.disconnect();
+    // Keep the owner marker so the same user can reuse the local cache. A
+    // different user is cleared below before their connection starts.
+    return storedOwner;
   }
 
   if (storedOwner !== userId) {

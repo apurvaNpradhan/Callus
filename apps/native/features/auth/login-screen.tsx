@@ -1,4 +1,4 @@
-import { Button, Card, Input, Text } from "panelui-native";
+import { Button, Card, FieldError, Input, Label, TextField, Typography } from "heroui-native";
 import { useState } from "react";
 import { Pressable, SafeAreaView, View } from "react-native";
 
@@ -37,27 +37,30 @@ export function LoginScreen() {
             {signUp ? "Build your private exercise library." : "Sign in to access your exercises."}
           </Card.Description>
         </Card.Header>
-        <Card.Content>
+        <Card.Body>
           <View className="gap-4">
-            {signUp ? <Input label="Name" value={name} onChangeText={setName} isRequired /> : null}
-            <Input
-              label="Email"
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              isRequired
-            />
-            <Input
-              label="Password"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-              isRequired
-              errorMessage={error}
-            />
-            <Button fullWidth loading={submitting} onPress={() => void submit()}>
-              {signUp ? "Sign up" : "Sign in"}
+            {signUp ? (
+              <TextField isRequired>
+                <Label>Name</Label>
+                <Input value={name} onChangeText={setName} />
+              </TextField>
+            ) : null}
+            <TextField isRequired>
+              <Label>Email</Label>
+              <Input
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+            </TextField>
+            <TextField isRequired isInvalid={Boolean(error)}>
+              <Label>Password</Label>
+              <Input value={password} onChangeText={setPassword} secureTextEntry />
+              {error ? <FieldError>{error}</FieldError> : null}
+            </TextField>
+            <Button isDisabled={submitting} onPress={() => void submit()}>
+              {submitting ? "Signing in…" : signUp ? "Sign up" : "Sign in"}
             </Button>
             <Pressable
               accessibilityRole="button"
@@ -66,12 +69,12 @@ export function LoginScreen() {
                 setError(undefined);
               }}
             >
-              <Text className="text-center" muted>
+              <Typography align="center" color="muted">
                 {signUp ? "Already have an account? Sign in" : "Need an account? Sign up"}
-              </Text>
+              </Typography>
             </Pressable>
           </View>
-        </Card.Content>
+        </Card.Body>
       </Card>
     </SafeAreaView>
   );

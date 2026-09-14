@@ -1,8 +1,9 @@
 import { PowerSyncContext } from "@powersync/react-native";
 import { Stack } from "expo-router";
-import { PanelUIProvider } from "panelui-native";
+import { HeroUINativeProvider } from "heroui-native";
 import { useEffect, useState } from "react";
 import { Pressable, SafeAreaView, Text } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { authClient } from "@/lib/auth-client";
 import {
@@ -76,12 +77,14 @@ export default function RootLayout() {
   }
 
   const content = (
-    <PanelUIProvider>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(authenticated)" />
-        <Stack.Screen name="(auth)" />
-      </Stack>
-    </PanelUIProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <HeroUINativeProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(authenticated)" />
+          <Stack.Screen name="(auth)" />
+        </Stack>
+      </HeroUINativeProvider>
+    </GestureHandlerRootView>
   );
 
   return database ? (

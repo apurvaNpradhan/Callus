@@ -1,8 +1,10 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useStatus as usePowerSyncStatus, useQuery } from "@powersync/react-native";
 import { FlashList } from "@shopify/flash-list";
 import { StatusBar } from "expo-status-bar";
-import { Button, Card, MoonIcon, SunIcon, Text, useThemeMode } from "panelui-native";
+import { Button, Card, Typography, useThemeColor } from "heroui-native";
 import { Image, SafeAreaView, View } from "react-native";
+import { Uniwind, useUniwind } from "uniwind";
 
 import { exerciseLookups } from "@/features/exercises/catalog";
 import { exercisesQuery } from "@/features/exercises/data/local";
@@ -14,61 +16,62 @@ const bodyPartName = (id: string) => bodyPartNames.get(id) ?? id;
 
 export function ExerciseLibraryScreen() {
   const session = authClient.useSession();
-  const { mode, toggleMode } = useThemeMode();
+  const { theme } = useUniwind();
+  const iconColor = useThemeColor("foreground");
   const status = usePowerSyncStatus();
   const query = useQuery(exercisesQuery());
   const offline = Boolean(session.error);
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <StatusBar style={mode === "dark" ? "light" : "dark"} />
+      <StatusBar style={theme === "dark" ? "light" : "dark"} />
       <View className="flex-1 gap-6 px-5 py-6">
         <View className="flex-row items-center justify-between">
-          <Text size="3xl" weight="semibold">
-            Callus
-          </Text>
+          <Typography.Heading type="h1">Callus</Typography.Heading>
           <Button
-            accessibilityLabel={`Switch to ${mode === "dark" ? "light" : "dark"} mode`}
-            onPress={toggleMode}
-            size="icon"
+            accessibilityLabel={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            isIconOnly
+            onPress={() => Uniwind.setTheme(theme === "dark" ? "light" : "dark")}
             variant="ghost"
           >
-            {mode === "dark" ? <SunIcon size={20} /> : <MoonIcon size={20} />}
+            <Ionicons
+              name={theme === "dark" ? "sunny-outline" : "moon-outline"}
+              size={20}
+              color={iconColor}
+            />
           </Button>
         </View>
         <View className="flex-1 gap-4">
-          <Text size="xl" weight="semibold">
-            Exercise library
-          </Text>
-          <Text muted>
+          <Typography.Heading type="h3">Exercise library</Typography.Heading>
+          <Typography color="muted">
             {offline
               ? "Offline — your local catalog remains available."
               : status.connected
                 ? "Catalog synced"
                 : "Catalog available offline"}
-          </Text>
+          </Typography>
           {status.uploadError || status.downloadError ? (
-            <Text className="text-destructive">
+            <Typography className="text-danger">
               {(status.uploadError ?? status.downloadError)?.message}
-            </Text>
+            </Typography>
           ) : null}
           {query.error ? (
-            <Text className="text-destructive">
+            <Typography className="text-danger">
               Could not load local exercises: {query.error.message}
-            </Text>
+            </Typography>
           ) : null}
           <View className="flex-row items-center justify-between">
-            <Text muted>
+            <Typography color="muted">
               {query.isLoading ? "Loading exercises…" : `${query.data.length} exercises`}
-            </Text>
+            </Typography>
             <Button variant="outline" onPress={() => void authClient.signOut()} size="sm">
               Log out
             </Button>
           </View>
           {query.isLoading ? (
-            <Text muted>Loading exercises…</Text>
+            <Typography color="muted">Loading exercises…</Typography>
           ) : query.error ? null : query.data.length === 0 ? (
-            <Text muted>No exercises available.</Text>
+            <Typography color="muted">No exercises available.</Typography>
           ) : (
             <FlashList
               className="flex-1"
@@ -86,14 +89,14 @@ export function ExerciseLibraryScreen() {
                         style={{ width: "100%", aspectRatio: 1 }}
                       />
                     ) : null}
-                    <Card.Header>
+                    <Card.Body>
                       <Card.Title numberOfLines={2}>{item.name}</Card.Title>
                       <Card.Description numberOfLines={1}>
                         {item.bodyPartLinks
                           .map(({ bodyPartId }) => bodyPartName(bodyPartId))
                           .join(", ")}
                       </Card.Description>
-                    </Card.Header>
+                    </Card.Body>
                   </Card>
                 );
               }}
