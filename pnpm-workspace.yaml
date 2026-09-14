@@ -12,7 +12,7 @@ packageExtensions:
       drizzle-orm: 1.0.0-rc.4
 catalog:
   dotenv: ^17.4.2
-  zod: ^4.6.2
+  zod: ^4.6.0
   "@types/node": ^26.5.1
   hono: ^4.13.7
   "@orpc/server": 2.0.0-beta.35
