@@ -16,6 +16,7 @@
     "@callus/auth": "workspace:*",
     "@callus/db": "workspace:*",
     "@callus/env": "workspace:*",
+    "@callus/storage": "workspace:*",
     "@hono/node-server": "^2.0.12",
     "@orpc/openapi": "catalog:",
     "@orpc/server": "catalog:",

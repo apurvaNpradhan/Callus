@@ -5,12 +5,15 @@ import * as SecureStore from "expo-secure-store";
 
 import { serverUrl } from "@/lib/server-url";
 
+const configuredScheme = Constants.expoConfig?.scheme;
+const scheme = typeof configuredScheme === "string" ? configuredScheme : "callus";
+
 export const authClient = createAuthClient({
   baseURL: serverUrl,
   plugins: [
     expoClient({
-      scheme: Constants.expoConfig?.scheme as string,
-      storagePrefix: Constants.expoConfig?.scheme as string,
+      scheme,
+      storagePrefix: scheme,
       storage: SecureStore,
     }),
   ],

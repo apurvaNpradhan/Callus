@@ -8,6 +8,14 @@ export const env = createEnv({
     POWERSYNC_URL: z.url(),
     PS_DATABASE_URI: z.string().min(1).optional(),
     PS_DATABASE_CA_CERT: z.string().min(1).optional(),
+    R2_ACCOUNT_ID: z
+      .string()
+      .regex(/^[a-f0-9]{32}$/i)
+      .optional(),
+    R2_ACCESS_KEY_ID: z.string().min(1).optional(),
+    R2_SECRET_ACCESS_KEY: z.string().min(1).optional(),
+    R2_BUCKET: z.string().min(1).default("callus"),
+    POWERSYNC_SEED_ENV: z.enum(["development", "staging", "production"]).default("development"),
     BETTER_AUTH_SECRET: z.string().min(32),
     BETTER_AUTH_URL: z.url(),
     CORS_ORIGIN: z.url(),

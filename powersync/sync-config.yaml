@@ -1,13 +1,19 @@
-# Adds YAML Schema support for VSCode users with the YAML extension installed. This enables features like validation and autocompletion based on the provided schema.
-# yaml-language-server: $schema=https://unpkg.com/@powersync/service-sync-rules@latest/schema/sync_rules.json
-
-# See https://docs.powersync.com/sync/advanced/compatibility
 config:
   edition: 3
 
-# Define Sync Streams to control which data is synced to each user
-# Docs: https://docs.powersync.com/sync/streams/overview
 streams:
-  items:
+  exercise_catalog:
     auto_subscribe: true
-    query: SELECT * FROM item WHERE item.user_id = auth.user_id()
+    queries:
+      - SELECT id, user_id, name, exercise_type, instructions, image_key, video_key, created_at, updated_at FROM exercise WHERE user_id IS NULL
+      - SELECT id, exercise_id, body_part_id FROM exercise_to_body_part WHERE user_id IS NULL
+      - SELECT id, exercise_id, equipment_id FROM exercise_to_equipment WHERE user_id IS NULL
+      - SELECT id, exercise_id, muscle_id, is_primary FROM exercise_to_muscle WHERE user_id IS NULL
+
+  user_exercises:
+    auto_subscribe: true
+    queries:
+      - SELECT id, user_id, name, exercise_type, instructions, image_key, video_key, created_at, updated_at FROM exercise WHERE user_id = auth.user_id()
+      - SELECT id, exercise_id, body_part_id FROM exercise_to_body_part WHERE user_id = auth.user_id()
+      - SELECT id, exercise_id, equipment_id FROM exercise_to_equipment WHERE user_id = auth.user_id()
+      - SELECT id, exercise_id, muscle_id, is_primary FROM exercise_to_muscle WHERE user_id = auth.user_id()

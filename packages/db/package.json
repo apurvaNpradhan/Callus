@@ -12,6 +12,10 @@
   },
   "scripts": {
     "check-types": "tsc -b",
+    "db:seed:exercises": "tsx src/seeding/exercise.seed.ts",
+    "db:seed:exercises:prune": "tsx src/seeding/exercise.seed.ts --prune",
+    "db:seed:exercises:test": "tsx --test src/seeding/exercise-data.test.ts",
+    "powersync:seed:publish": "tsx src/seeding/powersync-seed.ts",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:migrate:deploy": "drizzle-kit migrate",
@@ -19,15 +23,19 @@
   },
   "dependencies": {
     "@callus/env": "workspace:*",
+    "@callus/storage": "workspace:*",
     "drizzle-orm": "1.0.0-rc.4",
     "pg": "^8.22.0",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@callus/config": "workspace:*",
+    "@powersync/node": "^1.0.1",
     "@types/pg": "^8.20.0",
+    "better-sqlite3": "^12.11.1",
     "dotenv": "catalog:",
     "drizzle-kit": "1.0.0-rc.4",
+    "tsx": "^4.23.13",
     "typescript": "catalog:"
   }
 }
