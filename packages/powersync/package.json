@@ -1,0 +1,34 @@
+{
+  "name": "@callus/powersync",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc -b",
+    "test": "tsx --test src/*.test.ts",
+    "powersync:seed:publish": "tsx src/seeding/powersync-seed.ts"
+  },
+  "dependencies": {
+    "@callus/db": "workspace:*",
+    "@callus/env": "workspace:*",
+    "@callus/storage": "workspace:*",
+    "drizzle-orm": "1.0.0-rc.4",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@callus/config": "workspace:*",
+    "@powersync/node": "^1.0.1",
+    "@types/node": "catalog:",
+    "better-sqlite3": "^12.11.1",
+    "dotenv": "catalog:",
+    "tsx": "^4.23.13",
+    "typescript": "catalog:"
+  }
+}

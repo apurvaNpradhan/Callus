@@ -3,14 +3,17 @@ import { createAuthClient } from "better-auth/react";
 import Constants from "expo-constants";
 import * as SecureStore from "expo-secure-store";
 
-import { env } from "@callus/env/native";
+import { serverUrl } from "@/lib/server-url";
+
+const configuredScheme = Constants.expoConfig?.scheme;
+const scheme = typeof configuredScheme === "string" ? configuredScheme : "callus";
 
 export const authClient = createAuthClient({
-  baseURL: env.EXPO_PUBLIC_SERVER_URL,
+  baseURL: serverUrl,
   plugins: [
     expoClient({
-      scheme: Constants.expoConfig?.scheme as string,
-      storagePrefix: Constants.expoConfig?.scheme as string,
+      scheme,
+      storagePrefix: scheme,
       storage: SecureStore,
     }),
   ],

@@ -1,11 +1,10 @@
 import { OpenAPIGenerator } from "@orpc/openapi";
 import { OpenAPIHandler } from "@orpc/openapi/fetch";
 import { OpenAPIReferenceHandlerPlugin } from "@orpc/openapi/plugins";
-import { onError } from "@orpc/server";
 import { RPCHandler } from "@orpc/server/fetch";
 import { ZodToJsonSchemaConverter } from "@orpc/zod";
 import { initLogger } from "evlog";
-import { createAuthMiddleware, type BetterAuthInstance } from "evlog/better-auth";
+import { createAuthMiddleware } from "evlog/better-auth";
 import { createFsDrain } from "evlog/fs";
 import { evlog, type EvlogVariables } from "evlog/hono";
 import { Hono } from "hono";
@@ -17,11 +16,13 @@ import { auth } from "@callus/auth";
 import { closeDatabase } from "@callus/db";
 import { env } from "@callus/env/server";
 
+import { powersyncRoutes } from "./powersync";
+
 initLogger({
   env: { service: "callus-server" },
 });
 
-const identifyUser = createAuthMiddleware(auth as BetterAuthInstance, {
+const identifyUser = createAuthMiddleware(auth, {
   exclude: ["/api/auth/**"],
   maskEmail: true,
 });
@@ -46,6 +47,8 @@ app.use(
 
 app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
+app.route("/powersync", powersyncRoutes);
+
 const openapiGenerator = new OpenAPIGenerator({
   converters: [new ZodToJsonSchemaConverter()],
 });
@@ -56,24 +59,16 @@ export const apiHandler = new OpenAPIHandler(appRouter, {
       provider: "scalar",
       spec: () =>
         openapiGenerator.generate(appRouter, {
-          base: { info: { title: "Callus API", version: "0.0.0" } },
+          base: {
+            info: { title: "Callus API", version: "0.0.0" },
+            servers: [{ url: "/api-reference" }],
+          },
         }),
-    }),
-  ],
-  interceptors: [
-    onError((error) => {
-      console.error(error);
     }),
   ],
 });
 
-export const rpcHandler = new RPCHandler(appRouter, {
-  interceptors: [
-    onError((error) => {
-      console.error(error);
-    }),
-  ],
-});
+export const rpcHandler = new RPCHandler(appRouter);
 
 app.use("/*", async (c, next) => {
   const context = await createContext({ context: c });
@@ -110,15 +105,10 @@ export function createApp() {
 }
 
 export async function startServer() {
-  const server = serve(
-    {
-      fetch: createApp().fetch,
-      port: env.PORT,
-    },
-    (info) => {
-      console.log(`Server is running on http://localhost:${info.port}`);
-    },
-  );
+  const server = serve({
+    fetch: createApp().fetch,
+    port: env.PORT,
+  });
 
   const shutdown = () =>
     new Promise<void>((resolve) => {

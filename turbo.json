@@ -28,6 +28,41 @@
     "db:migrate:deploy": {
       "cache": false
     },
+    "db:seed:exercises": {
+      "cache": false,
+      "env": [
+        "DATABASE_URL",
+        "POWERSYNC_URL",
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
+        "CORS_ORIGIN"
+      ]
+    },
+    "db:seed:exercises:prune": {
+      "cache": false,
+      "env": [
+        "DATABASE_URL",
+        "POWERSYNC_URL",
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
+        "CORS_ORIGIN"
+      ]
+    },
+    "db:seed:exercises:test": {
+      "cache": false
+    },
+    "powersync:seed:publish": {
+      "cache": false,
+      "env": [
+        "POWERSYNC_SEED_ENV",
+        "POWERSYNC_URL",
+        "POWERSYNC_DEVELOPMENT_TOKEN",
+        "R2_ACCOUNT_ID",
+        "R2_ACCESS_KEY_ID",
+        "R2_SECRET_ACCESS_KEY",
+        "R2_BUCKET"
+      ]
+    },
     "db:studio": {
       "cache": false,
       "persistent": true
