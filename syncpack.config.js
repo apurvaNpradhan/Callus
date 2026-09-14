@@ -8,7 +8,7 @@ export default {
       // pnpm catalog. These are exempt from unification.
       label: "Expo-managed versions in the native app",
       packages: ["native"],
-      dependencies: ["react", "react-dom", "@types/react"],
+      dependencies: ["react", "react-dom", "@types/react", "drizzle-orm"],
       isIgnored: true,
     },
   ],
