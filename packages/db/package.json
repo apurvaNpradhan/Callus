@@ -6,12 +6,18 @@
     ".": {
       "default": "./src/index.ts"
     },
+    "./exercise-schema": {
+      "default": "./src/schema/exercise.ts"
+    },
     "./*": {
       "default": "./src/*.ts"
     }
   },
   "scripts": {
     "check-types": "tsc -b",
+    "db:seed:exercises": "tsx src/seeding/exercise.seed.ts",
+    "db:seed:exercises:prune": "tsx src/seeding/exercise.seed.ts --prune",
+    "db:seed:exercises:test": "tsx --test src/seeding/exercise-data.test.ts",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:migrate:deploy": "drizzle-kit migrate",
@@ -28,6 +34,7 @@
     "@types/pg": "^8.20.0",
     "dotenv": "catalog:",
     "drizzle-kit": "1.0.0-rc.4",
+    "tsx": "^4.23.13",
     "typescript": "catalog:"
   }
 }

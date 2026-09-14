@@ -1,0 +1,19 @@
+config:
+  edition: 3
+
+streams:
+  exercise_catalog:
+    auto_subscribe: true
+    queries:
+      - SELECT id, user_id, name, exercise_type, instructions, image_key, video_key, created_at, updated_at FROM exercise WHERE user_id IS NULL
+      - SELECT id, exercise_id, body_part_id FROM exercise_to_body_part WHERE user_id IS NULL
+      - SELECT id, exercise_id, equipment_id FROM exercise_to_equipment WHERE user_id IS NULL
+      - SELECT id, exercise_id, muscle_id, is_primary FROM exercise_to_muscle WHERE user_id IS NULL
+
+  user_exercises:
+    auto_subscribe: true
+    queries:
+      - SELECT id, user_id, name, exercise_type, instructions, image_key, video_key, created_at, updated_at FROM exercise WHERE user_id = auth.user_id()
+      - SELECT id, exercise_id, body_part_id FROM exercise_to_body_part WHERE user_id = auth.user_id()
+      - SELECT id, exercise_id, equipment_id FROM exercise_to_equipment WHERE user_id = auth.user_id()
+      - SELECT id, exercise_id, muscle_id, is_primary FROM exercise_to_muscle WHERE user_id = auth.user_id()
