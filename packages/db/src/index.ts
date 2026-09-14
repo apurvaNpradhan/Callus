@@ -3,8 +3,6 @@ import { Pool } from "pg";
 
 import { env } from "@callus/env/server";
 
-import { applyExerciseOperations } from "./domains/exercises/powersync";
-import type { UploadOperation } from "./domains/exercises/upload-contract";
 import { authRelations } from "./schema/auth";
 import { appRelations } from "./schema/relations";
 
@@ -43,18 +41,3 @@ export const db = new Proxy({} as Database, {
     return typeof value === "function" ? value.bind(getDatabase()) : value;
   },
 });
-
-export async function applyPowerSyncTransaction(
-  userId: string,
-  operations: readonly UploadOperation[],
-) {
-  await db.transaction((tx) => applyExerciseOperations(tx, userId, operations));
-}
-export {
-  ExerciseUploadRejectedError,
-  uploadOperationSchema,
-  uploadPayloadSchema,
-  MAX_UPLOAD_BYTES,
-  type UploadOperation,
-  type UploadPayload,
-} from "./domains/exercises";

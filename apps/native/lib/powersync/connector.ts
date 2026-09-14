@@ -10,10 +10,6 @@ import { z } from "zod";
 import { authClient } from "@/lib/auth-client";
 import { serverUrl } from "@/lib/server-url";
 
-async function nativeFetch(url: string, init?: RequestInit) {
-  return expoFetch(url, init);
-}
-
 async function cookies() {
   return Platform.OS === "web" ? undefined : authClient.getCookie();
 }
@@ -31,7 +27,7 @@ const uploadResponseSchema = z.object({
 export const powerSyncConnector: PowerSyncBackendConnector = {
   async fetchCredentials(): Promise<PowerSyncCredentials | null> {
     const cookie = await cookies();
-    const response = await nativeFetch(`${serverUrl}/powersync/credentials`, {
+    const response = await expoFetch(`${serverUrl}/powersync/credentials`, {
       headers: cookie ? { Cookie: cookie } : undefined,
       credentials: Platform.OS === "web" ? "include" : "omit",
     });
@@ -52,7 +48,7 @@ export const powerSyncConnector: PowerSyncBackendConnector = {
       op: operation.op,
       ...(operation.opData ? { opData: operation.opData } : {}),
     }));
-    const response = await nativeFetch(`${serverUrl}/powersync/upload`, {
+    const response = await expoFetch(`${serverUrl}/powersync/upload`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

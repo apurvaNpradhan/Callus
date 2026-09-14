@@ -13,9 +13,6 @@ const manifestSchema = z
     catalogCounts: z
       .object({
         exercises: z.number().int().nonnegative().refine(Number.isSafeInteger),
-        bodyParts: z.number().int().nonnegative().refine(Number.isSafeInteger),
-        equipment: z.number().int().nonnegative().refine(Number.isSafeInteger),
-        muscles: z.number().int().nonnegative().refine(Number.isSafeInteger),
         bodyPartLinks: z.number().int().nonnegative().refine(Number.isSafeInteger),
         equipmentLinks: z.number().int().nonnegative().refine(Number.isSafeInteger),
         muscleLinks: z.number().int().nonnegative().refine(Number.isSafeInteger),
@@ -25,9 +22,6 @@ const manifestSchema = z
   .strict();
 const expectedCatalogCounts = {
   exercises: 7542,
-  bodyParts: 20,
-  equipment: 28,
-  muscles: 44,
   bodyPartLinks: 8786,
   equipmentLinks: 7561,
   muscleLinks: 35358,
@@ -41,9 +35,6 @@ export type ExerciseSeedManifest = {
   schemaVersion: number;
   catalogCounts: {
     exercises: number;
-    bodyParts: number;
-    equipment: number;
-    muscles: number;
     bodyPartLinks: number;
     equipmentLinks: number;
     muscleLinks: number;
@@ -65,9 +56,6 @@ export function validateManifest(value: unknown): ExerciseSeedManifest {
     throw new Error("Seed manifest object key is invalid");
   if (
     manifest.catalogCounts.exercises !== expectedCatalogCounts.exercises ||
-    manifest.catalogCounts.bodyParts !== expectedCatalogCounts.bodyParts ||
-    manifest.catalogCounts.equipment !== expectedCatalogCounts.equipment ||
-    manifest.catalogCounts.muscles !== expectedCatalogCounts.muscles ||
     manifest.catalogCounts.bodyPartLinks !== expectedCatalogCounts.bodyPartLinks ||
     manifest.catalogCounts.equipmentLinks !== expectedCatalogCounts.equipmentLinks ||
     manifest.catalogCounts.muscleLinks !== expectedCatalogCounts.muscleLinks

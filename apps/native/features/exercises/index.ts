@@ -1,6 +1,4 @@
 export {
-  bodyPartTable,
-  equipmentTable,
   exerciseDrizzleSchema,
   exercisePowerSyncTables,
   exerciseRelations,
@@ -11,22 +9,19 @@ export {
   exerciseToEquipmentTable,
   exerciseToMuscleRelations,
   exerciseToMuscleTable,
-  muscleTable,
-  type BodyPart,
-  type Equipment,
   type Exercise,
   type ExerciseToBodyPart,
   type ExerciseToEquipment,
   type ExerciseToMuscle,
-  type Muscle,
 } from "./schema";
 export { exerciseLookups, type ExerciseLookup } from "./catalog";
+export { exerciseImageUrl } from "./image-url";
 export {
   exerciseDetailQuery,
   exercisesQuery,
   type ExerciseDetail,
   type ExerciseListRow,
   type NativeExerciseType,
-} from "./queries";
-export { deleteExercise, saveExercise, type SaveExerciseInput } from "./commands";
-export { ExerciseLibraryScreen } from "./library-screen";
+} from "./data/local";
+export { deleteExercise, saveExercise, type SaveExerciseInput } from "./data/local";
+export { ExerciseLibraryScreen } from "./screens/library-screen";

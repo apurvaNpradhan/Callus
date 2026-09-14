@@ -2,12 +2,12 @@ import { useStatus as usePowerSyncStatus, useQuery } from "@powersync/react-nati
 import { FlashList } from "@shopify/flash-list";
 import { StatusBar } from "expo-status-bar";
 import { Button, Card, MoonIcon, SunIcon, Text, useThemeMode } from "panelui-native";
-import { SafeAreaView, View } from "react-native";
+import { Image, SafeAreaView, View } from "react-native";
 
+import { exerciseLookups } from "@/features/exercises/catalog";
+import { exercisesQuery } from "@/features/exercises/data/local";
+import { exerciseImageUrl } from "@/features/exercises/image-url";
 import { authClient } from "@/lib/auth-client";
-
-import { exerciseLookups } from "./catalog";
-import { exercisesQuery } from "./queries";
 
 const bodyPartNames = new Map(Object.entries(exerciseLookups.bodyParts));
 const bodyPartName = (id: string) => bodyPartNames.get(id) ?? id;
@@ -75,18 +75,28 @@ export function ExerciseLibraryScreen() {
               data={query.data}
               numColumns={2}
               contentContainerStyle={{ paddingBottom: 24, paddingHorizontal: 4 }}
-              renderItem={({ item }) => (
-                <Card className="mx-1 mb-3 flex-1">
-                  <Card.Header>
-                    <Card.Title numberOfLines={2}>{item.name}</Card.Title>
-                    <Card.Description numberOfLines={1}>
-                      {item.bodyPartLinks
-                        .map(({ bodyPartId }) => bodyPartName(bodyPartId))
-                        .join(", ")}
-                    </Card.Description>
-                  </Card.Header>
-                </Card>
-              )}
+              renderItem={({ item }) => {
+                const imageUrl = exerciseImageUrl(item.imageKey);
+                return (
+                  <Card className="mx-1 mb-3 flex-1 overflow-hidden">
+                    {imageUrl ? (
+                      <Image
+                        source={{ uri: imageUrl }}
+                        resizeMode="contain"
+                        style={{ width: "100%", aspectRatio: 1 }}
+                      />
+                    ) : null}
+                    <Card.Header>
+                      <Card.Title numberOfLines={2}>{item.name}</Card.Title>
+                      <Card.Description numberOfLines={1}>
+                        {item.bodyPartLinks
+                          .map(({ bodyPartId }) => bodyPartName(bodyPartId))
+                          .join(", ")}
+                      </Card.Description>
+                    </Card.Header>
+                  </Card>
+                );
+              }}
               keyExtractor={(item) => item.id}
             />
           )}

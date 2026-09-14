@@ -1,11 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import {
-  parseUploadPayload,
-  uploadOperationSchema,
-  uploadPayloadSchema,
-} from "./powersync-contract";
+import { parseUploadPayload, uploadOperationSchema, uploadPayloadSchema } from "./upload";
 
 test("PowerSync upload contract accepts mixed exercise mutations", () => {
   const valid = uploadPayloadSchema.safeParse({

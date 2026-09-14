@@ -1,9 +1,8 @@
 import { toCompilableQuery } from "@powersync/drizzle-driver";
 import { eq, like } from "drizzle-orm";
 
+import { exerciseTable, type Exercise } from "@/features/exercises/schema";
 import { drizzleDb } from "@/lib/powersync/database";
-
-import { exerciseTable, type Exercise } from "./schema";
 
 export type NativeExerciseType = "weight_reps" | "duration" | "distance_duration";
 export type ExerciseListRow = Pick<

@@ -13,9 +13,6 @@ import { AppSchema } from "./schema";
 
 const catalogCounts = {
   exercises: 7542,
-  bodyParts: 20,
-  equipment: 28,
-  muscles: 44,
   bodyPartLinks: 8786,
   equipmentLinks: 7561,
   muscleLinks: 35358,
@@ -29,9 +26,6 @@ const manifestSchema = z.object({
   schemaVersion: z.number().int().positive(),
   catalogCounts: z.object({
     exercises: z.number().int(),
-    bodyParts: z.number().int(),
-    equipment: z.number().int(),
-    muscles: z.number().int(),
     bodyPartLinks: z.number().int(),
     equipmentLinks: z.number().int(),
     muscleLinks: z.number().int(),
@@ -71,9 +65,6 @@ async function verifyDatabase(file: File) {
       (await database.get<{ count: number }>(`SELECT count(*) AS count FROM ${table}`)).count;
     const actual = {
       exercises: await count("exercise"),
-      bodyParts: await count("body_part"),
-      equipment: await count("equipment"),
-      muscles: await count("muscle"),
       bodyPartLinks: await count("exercise_to_body_part"),
       equipmentLinks: await count("exercise_to_equipment"),
       muscleLinks: await count("exercise_to_muscle"),

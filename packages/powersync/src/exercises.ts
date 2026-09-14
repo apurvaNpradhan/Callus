@@ -1,7 +1,6 @@
-// oxlint-disable import/no-relative-parent-imports
 import { and, eq, inArray } from "drizzle-orm";
 
-import type { db } from "../../index";
+import type { db } from "@callus/db";
 import {
   bodyPart,
   equipment,
@@ -10,8 +9,9 @@ import {
   exerciseToEquipment,
   exerciseToMuscle,
   muscle,
-} from "./schema";
-import type { UploadOperation } from "./upload-contract";
+} from "@callus/db/exercise-schema";
+
+import type { UploadOperation } from "./upload";
 
 export class ExerciseUploadRejectedError extends Error {
   constructor(

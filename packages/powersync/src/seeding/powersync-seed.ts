@@ -20,18 +20,12 @@ import { CONTENT_TYPES, createStorageFromEnv, type Storage } from "@callus/stora
 
 const expectedCounts = {
   exercises: 7542,
-  bodyParts: 20,
-  equipment: 28,
-  muscles: 44,
   bodyPartLinks: 8786,
   equipmentLinks: 7561,
   muscleLinks: 35358,
 };
 
 const schema = new Schema({
-  body_part: new Table({ name: column.text }),
-  equipment: new Table({ name: column.text }),
-  muscle: new Table({ name: column.text }),
   exercise: new Table({
     user_id: column.text,
     name: column.text,
@@ -66,9 +60,6 @@ async function verifyCatalog(database: PowerSyncDatabase) {
     (await database.get<{ count: number }>(countQuery(table))).count;
   const actual = {
     exercises: await count("exercise"),
-    bodyParts: await count("body_part"),
-    equipment: await count("equipment"),
-    muscles: await count("muscle"),
     bodyPartLinks: await count("exercise_to_body_part"),
     equipmentLinks: await count("exercise_to_equipment"),
     muscleLinks: await count("exercise_to_muscle"),

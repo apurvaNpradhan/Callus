@@ -150,3 +150,19 @@ export type UploadOperation = z.infer<typeof uploadOperationSchema>;
 export type UploadPayload = z.infer<typeof uploadPayloadSchema>;
 
 export const MAX_UPLOAD_BYTES = 64_000;
+
+export type ParsedUploadPayload = { ok: true; data: UploadPayload } | { ok: false; error: string };
+
+export function parseUploadPayload(rawBody: string): ParsedUploadPayload {
+  if (new TextEncoder().encode(rawBody).byteLength > MAX_UPLOAD_BYTES)
+    return { ok: false, error: "Payload too large" };
+
+  let parsed: ReturnType<typeof uploadPayloadSchema.safeParse>;
+  try {
+    parsed = uploadPayloadSchema.safeParse(JSON.parse(rawBody));
+  } catch {
+    return { ok: false, error: "Invalid JSON" };
+  }
+  if (!parsed.success) return { ok: false, error: "Invalid upload payload" };
+  return { ok: true, data: parsed.data };
+}

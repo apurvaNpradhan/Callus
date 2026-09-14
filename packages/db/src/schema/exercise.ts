@@ -2,7 +2,7 @@
 import { sql } from "drizzle-orm";
 import { boolean, check, index, pgTable, text, timestamp, uniqueIndex } from "drizzle-orm/pg-core";
 
-import { user } from "../../schema/auth";
+import { user } from "./auth";
 
 export type ExerciseType = "weight_reps" | "duration" | "distance_duration";
 

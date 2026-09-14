@@ -23,7 +23,7 @@
     "db:seed:exercises": "turbo run db:seed:exercises -F @callus/db --",
     "db:seed:exercises:prune": "turbo run db:seed:exercises:prune -F @callus/db --",
     "db:seed:exercises:test": "turbo run db:seed:exercises:test -F @callus/db --",
-    "powersync:seed:publish": "turbo run powersync:seed:publish -F @callus/db --",
+    "powersync:seed:publish": "turbo run powersync:seed:publish -F @callus/powersync --",
     "lint": "oxlint",
     "format": "oxfmt --write",
     "format:check": "oxfmt --check",

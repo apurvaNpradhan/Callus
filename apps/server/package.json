@@ -7,7 +7,6 @@
     "build": "tsdown",
     "check-types": "tsc -b",
     "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
-    "test": "tsx --test src/*.test.ts",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.mjs"
   },
@@ -16,7 +15,7 @@
     "@callus/auth": "workspace:*",
     "@callus/db": "workspace:*",
     "@callus/env": "workspace:*",
-    "@callus/storage": "workspace:*",
+    "@callus/powersync": "workspace:*",
     "@hono/node-server": "^2.0.12",
     "@orpc/openapi": "catalog:",
     "@orpc/server": "catalog:",

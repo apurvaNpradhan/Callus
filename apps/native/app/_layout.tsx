@@ -1,5 +1,4 @@
 import { PowerSyncContext } from "@powersync/react-native";
-import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { PanelUIProvider } from "panelui-native";
 import { useEffect, useState } from "react";
@@ -12,7 +11,6 @@ import {
   preparePreseededDatabase,
   setPowerSyncDatabase,
 } from "@/lib/powersync";
-import { queryClient } from "@/utils/orpc";
 
 // oxlint-disable-next-line import/no-relative-parent-imports
 import "../global.css";
@@ -79,12 +77,10 @@ export default function RootLayout() {
 
   const content = (
     <PanelUIProvider>
-      <QueryClientProvider client={queryClient}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(authenticated)" />
-          <Stack.Screen name="(auth)" />
-        </Stack>
-      </QueryClientProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(authenticated)" />
+        <Stack.Screen name="(auth)" />
+      </Stack>
     </PanelUIProvider>
   );
 

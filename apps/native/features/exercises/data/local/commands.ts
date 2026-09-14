@@ -1,15 +1,15 @@
 import { and, eq } from "drizzle-orm";
 import { randomUUID } from "expo-crypto";
 
-import { drizzleDb } from "@/lib/powersync/database";
-
-import type { NativeExerciseType } from "./queries";
 import {
   exerciseTable,
   exerciseToBodyPartTable,
   exerciseToEquipmentTable,
   exerciseToMuscleTable,
-} from "./schema";
+} from "@/features/exercises/schema";
+import { drizzleDb } from "@/lib/powersync/database";
+
+import type { NativeExerciseType } from "./queries";
 
 export type SaveExerciseInput = {
   id?: string;

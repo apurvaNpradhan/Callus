@@ -8,5 +8,5 @@ export {
   exerciseToEquipment,
   exerciseToMuscle,
   muscle,
-} from "../domains/exercises/schema";
-export type { ExerciseType } from "../domains/exercises/schema";
+} from "./exercise";
+export type { ExerciseType } from "./exercise";
