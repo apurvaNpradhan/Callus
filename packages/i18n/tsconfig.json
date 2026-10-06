@@ -1,0 +1,7 @@
+{
+  "extends": "@callus/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true
+  }
+}

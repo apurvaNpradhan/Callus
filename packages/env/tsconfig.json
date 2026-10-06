@@ -1,0 +1,6 @@
+{
+  "extends": "@callus/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node", "vite-plus/client"]
+  }
+}

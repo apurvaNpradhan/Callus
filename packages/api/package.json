@@ -1,0 +1,39 @@
+{
+  "name": "@callus/api",
+  "type": "module",
+  "imports": {
+    "#@/*": "./src/*.ts"
+  },
+  "exports": {
+    "./contract": {
+      "types": "./src/contract.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {
+    "test:unit": "vp test"
+  },
+  "dependencies": {
+    "@callus/auth": "workspace:*",
+    "@callus/core": "workspace:*",
+    "@callus/db": "workspace:*",
+    "@callus/env": "workspace:*",
+    "@callus/logger": "workspace:*",
+    "@orpc/client": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/tanstack-query": "catalog:",
+    "@tanstack/react-start": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@callus/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "hono": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

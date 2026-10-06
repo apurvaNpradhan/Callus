@@ -1,0 +1,10 @@
+{
+  "extends": "@callus/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@callus/ui/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

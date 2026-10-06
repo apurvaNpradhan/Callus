@@ -1,0 +1,17 @@
+name: callus-db-dev
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: callus-db-dev-postgres
+    environment:
+      POSTGRES_DB: callus
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: changeme
+    ports:
+      - "5432:5432"
+    volumes:
+      - callus-db-dev-postgres-dev:/var/lib/postgresql
+
+volumes:
+  callus-db-dev-postgres-dev:

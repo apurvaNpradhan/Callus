@@ -1,0 +1,31 @@
+{
+  "name": "@callus/i18n",
+  "type": "module",
+  "imports": {
+    "#@/paraglide/*": "./src/paraglide/*.js",
+    "#@/*": "./src/*.ts"
+  },
+  "exports": {
+    "./messages": "./src/paraglide/messages.js",
+    "./runtime": "./src/paraglide/runtime.js",
+    "./server": "./src/paraglide/server.js",
+    "./native/messages": "./src/paraglide-native/messages.js",
+    "./native/runtime": "./src/paraglide-native/runtime.js",
+    "./vite/plugin": "./src/vite/plugin.js"
+  },
+  "scripts": {
+    "build": "vp run build:web && vp run build:native",
+    "build:web": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
+    "build:native": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide-native --strategy globalVariable baseLocale --output-structure message-modules --emit-ts-declarations",
+    "dev": "paraglide-js compile --watch --project ./project.inlang --outdir ./src/paraglide",
+    "dev:native": "paraglide-js compile --watch --project ./project.inlang --outdir ./src/paraglide-native --strategy globalVariable baseLocale --output-structure message-modules --emit-ts-declarations",
+    "machine-translate": "inlang machine translate --project project.inlang"
+  },
+  "devDependencies": {
+    "@callus/tsconfig": "workspace:*",
+    "@inlang/cli": "catalog:",
+    "@inlang/paraglide-js": "catalog:",
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  }
+}

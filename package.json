@@ -1,0 +1,58 @@
+{
+  "name": "callus",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "vp run i18n:ensure && vp check",
+    "fix": "vp run i18n:ensure && vp check --fix",
+    "test:unit:run": "pnpm dotenvx run -f ./packages/env/.env -- vp run -r test:unit",
+    "dev": "vp run i18n:ensure && pnpm --parallel --filter @callus/i18n --filter @callus/server --filter @callus/web dev",
+    "dev:native": "vp run --filter @callus/i18n build:native && pnpm --parallel --filter @callus/i18n --filter @callus/native run dev:native",
+    "build": "vp run -r build",
+    "i18n:ensure": "node -e \"const { existsSync } = require('node:fs'); if (['messages/_index.js', 'messages.js', 'registry.js', 'runtime.js', 'server.js'].some((file) => !existsSync('packages/i18n/src/paraglide/' + file))) require('node:child_process').execSync('vp run --filter @callus/i18n build:web', { stdio: 'inherit' })\"",
+    "prepare": "vp config",
+    "deps": "vpx taze@latest -Ilwr --maturity-period 3",
+    "deps:major": "vpx taze@latest major -Ilwr --maturity-period 3",
+    "fallow": "vpx fallow --skip health",
+    "tanstack": "vpx @tanstack/cli@latest",
+    "db": "vp run --filter @callus/db db",
+    "db:dev:start": "vp run --filter @callus/db db:dev:start",
+    "db:dev:stop": "vp run --filter @callus/db db:dev:stop",
+    "db:push": "vp run -w db push",
+    "db:generate": "vp run -w db generate",
+    "db:migrate": "vp run -w db migrate",
+    "db:studio": "vp run -w db studio",
+    "docker:up": "pnpm dotenvx run -f .env.docker docker -- compose up",
+    "docker:up:build": "pnpm dotenvx run -f .env.docker docker -- compose up --build",
+    "docker:down": "pnpm dotenvx run -f .env.docker docker -- compose down",
+    "ui": "vp run --filter @callus/ui ui",
+    "ui:web": "vp run --filter @callus/web ui",
+    "auth:secret": "vpx auth@latest secret",
+    "auth:generate": "vp run --filter @callus/db auth:generate"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@dotenvx/dotenvx": "catalog:",
+    "@tanstack/eslint-plugin-query": "catalog:",
+    "@tanstack/eslint-plugin-router": "catalog:",
+    "@typescript/native-preview": "catalog:",
+    "eslint-plugin-fsd-lint": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "packageManager": "pnpm@12.8.1",
+  "intent": {
+    "skills": [
+      "@tanstack/*",
+      "drizzle-kit"
+    ]
+  }
+}

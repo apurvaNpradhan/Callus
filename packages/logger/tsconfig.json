@@ -1,0 +1,3 @@
+{
+  "extends": "@callus/tsconfig/tsconfig.base.json"
+}

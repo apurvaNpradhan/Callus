@@ -1,0 +1,31 @@
+{
+  "name": "@callus/db",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#@/*": "./src/*.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts"
+  },
+  "scripts": {
+    "db": "pnpm dotenvx run -f ../env/.env -- drizzle-kit",
+    "db:dev:start": "docker compose -f docker-compose.dev.yaml up -d",
+    "db:dev:stop": "docker compose -f docker-compose.dev.yaml stop",
+    "auth:generate": "pnpm dotenvx run -f ../env/.env -- vpx auth@latest generate --config ../auth/src/index.ts -y --output ./src/schema/auth.schema.ts"
+  },
+  "dependencies": {
+    "@callus/env": "workspace:*",
+    "@callus/logger": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "postgres": "catalog:"
+  },
+  "devDependencies": {
+    "@callus/tsconfig": "workspace:*",
+    "@dotenvx/dotenvx": "catalog:",
+    "@types/node": "catalog:",
+    "drizzle-kit": "catalog:",
+    "typescript": "catalog:"
+  }
+}

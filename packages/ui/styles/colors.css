@@ -1,0 +1,33 @@
+/* Destructive actions retain the only status color; other states stay neutral. */
+:root {
+  --color-destructive: #b4261a;
+  --color-destructive-foreground: #ffffff;
+  --color-warning: #666666;
+  --color-warning-foreground: #111111;
+  --color-success: #666666;
+  --color-success-foreground: #111111;
+  --color-info: #666666;
+  --color-info-foreground: #111111;
+}
+
+.dark {
+  --color-destructive: #e0726a;
+  --color-destructive-foreground: #0a0a0a;
+  --color-warning: #9a9a9a;
+  --color-warning-foreground: #ededed;
+  --color-success: #9a9a9a;
+  --color-success-foreground: #ededed;
+  --color-info: #9a9a9a;
+  --color-info-foreground: #ededed;
+}
+
+@theme inline {
+  --color-destructive: var(--color-destructive);
+  --color-destructive-foreground: var(--color-destructive-foreground);
+  --color-warning: var(--color-warning);
+  --color-warning-foreground: var(--color-warning-foreground);
+  --color-success: var(--color-success);
+  --color-success-foreground: var(--color-success-foreground);
+  --color-info: var(--color-info);
+  --color-info-foreground: var(--color-info-foreground);
+}

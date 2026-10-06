@@ -1,0 +1,12 @@
+{
+  "name": "@callus/vite-plus",
+  "private": true,
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@oxlint/plugins": "1.79.0",
+    "@types/node": "catalog:"
+  }
+}

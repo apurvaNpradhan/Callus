@@ -1,0 +1,8 @@
+{
+  "name": "@callus/tsconfig",
+  "private": true,
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

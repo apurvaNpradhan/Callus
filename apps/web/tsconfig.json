@@ -1,0 +1,20 @@
+{
+  "extends": "@callus/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+
+      // for shadcn CLI to resolve @callus/ui paths to the /packages/ui directory
+      "@callus/ui/*": ["../../packages/ui/*"]
+    },
+    "types": ["node", "vite-plus/client", "mdx"],
+
+    /* Because paraglide.js breaks types during rebuilds on dev */
+    "allowJs": true
+  },
+  "mdx": {
+    "checkMdx": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

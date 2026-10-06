@@ -1,0 +1,4 @@
+export const AUTH_CONSTRAINTS = {
+  NAME_MIN_LENGTH: 2,
+  PASSWORD_MIN_LENGTH: 8
+} as const;
