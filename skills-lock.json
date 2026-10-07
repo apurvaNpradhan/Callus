@@ -24,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "skills/orpc-openapi/SKILL.md",
       "computedHash": "3375d89d95a869df9c1bad94363bebca3539a7ae0973a20e7e0089882932ac43"
+    },
+    "powersync": {
+      "source": "powersync-ja/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/powersync/SKILL.md",
+      "computedHash": "5a6b250ceeafaff78eb895fd511c8d75ee194ef44bfb5ddbe1a5da018676df4b"
     }
   }
 }
