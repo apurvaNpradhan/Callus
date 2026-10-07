@@ -183,8 +183,8 @@ catalogs:
       specifier: 21.2.3
       version: 21.2.3
     '@dotenvx/dotenvx':
-      specifier: 2.31.1
-      version: 2.31.1
+      specifier: 2.32.4
+      version: 2.32.4
     '@expo-google-fonts/geist':
       specifier: 0.4.2
       version: 0.4.2
@@ -405,7 +405,7 @@ importers:
         version: 21.2.3
       '@dotenvx/dotenvx':
         specifier: 'catalog:'
-        version: 2.31.1
+        version: 2.32.4
       '@tanstack/eslint-plugin-query':
         specifier: 'catalog:'
         version: 5.104.0(eslint@10.12.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@7.0.2)
@@ -592,7 +592,7 @@ importers:
         version: link:../../packages/logger
       '@dotenvx/dotenvx':
         specifier: 'catalog:'
-        version: 2.31.1
+        version: 2.32.4
       '@hono/node-server':
         specifier: 'catalog:'
         version: 2.1.3(hono@4.13.11)
@@ -732,7 +732,7 @@ importers:
         version: link:../../tools/tsconfig
       '@dotenvx/dotenvx':
         specifier: 'catalog:'
-        version: 2.31.1
+        version: 2.32.4
       '@mdx-js/rollup':
         specifier: 'catalog:'
         version: 3.1.1(rollup@4.64.0)(supports-color@8.1.1)
@@ -919,7 +919,7 @@ importers:
         version: link:../../tools/tsconfig
       '@dotenvx/dotenvx':
         specifier: 'catalog:'
-        version: 2.31.1
+        version: 2.32.4
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.3
@@ -1761,8 +1761,8 @@ packages:
     peerDependencies:
       solid-js: ^1.8
 
-  '@dotenvx/dotenvx@2.31.1':
-    resolution: {integrity: sha512-Sen23BJL57MID4y7ATSHKokTYbJjsTqDWXOjDGBxydRddc2MEknaYMRz90LC7iTO9VXS5HyYBnA5N8oOKdUhug==}
+  '@dotenvx/dotenvx@2.32.4':
+    resolution: {integrity: sha512-nJJqsTXaY+mEITPpDFxoPVEPPS4mw815BU/YFjzamnp3eIELOR/CzJeOc7Lt9Vv2ZHH3sYDMUlnaN34FClc/zA==}
     hasBin: true
 
   '@dotenvx/primitives@3.0.3':
@@ -10315,7 +10315,7 @@ snapshots:
       '@floating-ui/dom': 1.8.0
       solid-js: 1.9.15
 
-  '@dotenvx/dotenvx@2.31.1':
+  '@dotenvx/dotenvx@2.32.4':
     dependencies:
       '@dotenvx/primitives': 3.0.3
       '@dotenvx/tooling': 1.0.3
