@@ -9,7 +9,7 @@
     "dev": "vp run i18n:ensure && pnpm --parallel --filter @callus/i18n --filter @callus/server --filter @callus/web dev",
     "dev:native": "vp run --filter @callus/i18n build:native && pnpm --parallel --filter @callus/i18n --filter @callus/native run dev:native",
     "build": "vp run -r build",
-    "i18n:ensure": "node -e \"const { existsSync } = require('node:fs'); if (['messages/_index.js', 'messages.js', 'registry.js', 'runtime.js', 'server.js'].some((file) => !existsSync('packages/i18n/src/paraglide/' + file))) require('node:child_process').execSync('vp run --filter @callus/i18n build:web', { stdio: 'inherit' })\"",
+    "i18n:ensure": "node scripts/ensure-paraglide-output.mjs",
     "prepare": "vp config",
     "deps": "vpx taze@latest -Ilwr --maturity-period 3",
     "deps:major": "vpx taze@latest major -Ilwr --maturity-period 3",
