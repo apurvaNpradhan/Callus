@@ -14,7 +14,7 @@ catalog:
   "@bprogress/react": 1.2.7
   "@commitlint/cli": 21.2.3
   "@commitlint/config-conventional": 21.2.3
-  "@dotenvx/dotenvx": 2.31.1
+  "@dotenvx/dotenvx": 2.32.4
   "@expo-google-fonts/geist": 0.4.2
   "@expo-google-fonts/geist-mono": 0.4.3
   "@fontsource-variable/geist": 5.3.0
